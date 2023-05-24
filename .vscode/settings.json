@@ -18,6 +18,10 @@
 
   "search.exclude": {
     // package-lock.json 에서 찾을 일이 있다면 파일을 직접 찾아서 수정하는 것이 편함
-    "package-lock.json": true,
+    "package-lock.json": true
   },
+
+  // tailwind 를 사용하면서 vscode 의 css lint 에서 에러가 나는 것을 무시
+  "css.lint.unknownAtRules": "ignore",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

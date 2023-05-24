@@ -2,7 +2,7 @@ import { getCategories, getPostsByCategory } from '@/lib/api';
 import Image from 'next/image';
 import styles from './page.module.css';
 
-export default function Home() {
+export default function HomePage() {
   // const c = getAllPosts(['slug']);
   const d = getPostsByCategory({ category: 'category1', fields: ['slug'] });
 

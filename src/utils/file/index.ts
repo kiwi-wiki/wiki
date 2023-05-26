@@ -3,10 +3,15 @@ import { validateExtension } from '@/utils/validation';
 import fs from 'fs';
 import { join } from 'path';
 
-export function generateFinder(root: string, ext: string) {
+type GenerateFinderParams = {
+  target: string;
+  ext?: string;
+};
+
+export function generateFinder({ target, ext }: GenerateFinderParams) {
   const files: FilePath[] = [];
 
-  return function findFiles(parent: string = root) {
+  return function findFiles(parent: string = target) {
     while (true) {
       const items = fs.readdirSync(parent);
 
@@ -17,20 +22,22 @@ export function generateFinder(root: string, ext: string) {
         if (stat.isDirectory()) {
           findFiles(fullPath);
         } else {
-          if (validateExtension(item, ext)) {
-            const relativePath = fullPath.replace(root, '');
-            const slug = relativePath.replace(/\.md$/, '');
-            const filename = item.replace(/\.md$/, '');
-
-            const file = {
-              filename,
-              fullPath,
-              relativePath,
-              slug,
-            };
-
-            files.push(file);
+          if (!!ext && !validateExtension(item, ext)) {
+            return;
           }
+
+          const relativePath = fullPath.replace(target, '');
+          const slug = relativePath.replace(/\.md$/, '');
+          const filename = item.replace(/\.md$/, '');
+
+          const file = {
+            filename,
+            fullPath,
+            relativePath,
+            slug,
+          };
+
+          files.push(file);
         }
       });
 

@@ -6,7 +6,7 @@ export function Navigation() {
 
   return (
     <nav className="h-full flex overflow-scroll flex-col invisible hover:visible">
-      <ul className="visible flex flex-col gap-1">
+      <ul className="visible flex flex-col gap-3">
         {routes.map(route => (
           <NavItem route={route} key={route.name} />
         ))}

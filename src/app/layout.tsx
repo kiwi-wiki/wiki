@@ -9,7 +9,6 @@ const notoSansKR = Noto_Sans_KR({
   weight: ['100', '300', '400', '500', '700', '900'],
   style: 'normal',
   subsets: ['latin'],
-  fallback: ['sans-serif'],
 });
 
 export const metadata: Metadata = {
@@ -27,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </Link>
             <Navigation />
           </div>
-          <main className="w-full h-full p-3">{children}</main>
+          <main className="w-full h-full overflow-x-hidden">{children}</main>
         </div>
       </body>
     </html>

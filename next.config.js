@@ -3,4 +3,6 @@ const nextConfig = {
   output: 'export',
 };
 
-module.exports = nextConfig;
+const { withContentlayer } = require('next-contentlayer');
+
+module.exports = withContentlayer(nextConfig);

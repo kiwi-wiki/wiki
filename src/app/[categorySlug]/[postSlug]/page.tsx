@@ -21,7 +21,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function PostPage({ params }: Props) {
-  const post = allPosts.find(post => post._raw.flattenedPath === join(params.categorySlug, params.postSlug));
+  const post = allPosts.find(post => {
+    return post._raw.flattenedPath === decodeURI(params.postSlug);
+  });
 
   return (
     <div className="flex p-4">

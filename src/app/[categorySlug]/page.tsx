@@ -3,6 +3,7 @@ import { findPostsByCategory } from '@/lib/api';
 import { makeTitle } from '@/utils/metadata';
 import { classifyByFirstLetter } from '@/utils/misc';
 import type { Metadata } from 'next';
+import { join } from 'path';
 
 interface Props {
   params: {
@@ -35,7 +36,7 @@ export default function CategoryPage({ params }: Props) {
                 {posts.map(post => (
                   <PostCard
                     key={post._raw.flattenedPath}
-                    href={post._raw.flattenedPath}
+                    href={join(params.categorySlug, post._raw.flattenedPath)}
                     title={post.title}
                     description={post.description}
                   />

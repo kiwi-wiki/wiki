@@ -1,4 +1,4 @@
-import { CopyButton } from '@/components/mdx/Pre/CopyButton';
+import { CopyButton } from '@/components/mdx/Pre/CopyButton.client';
 import classNames from 'classnames';
 import preStyles from './pre.module.css';
 

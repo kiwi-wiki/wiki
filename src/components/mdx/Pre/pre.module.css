@@ -1,0 +1,66 @@
+.pre {
+  /* Common */
+  @apply text-sm font-mono rounded-md relative overflow-hidden;
+
+  /* Light */
+  @apply border border-gray-200 bg-gray-50;
+
+  /* Dark */
+  @apply dark:bg-gray-800 dark:text-white dark:border-gray-800;
+}
+
+.code {
+  @apply p-5 pt-10 overflow-x-scroll;
+}
+
+.code::-webkit-scrollbar {
+  @apply w-1.5 h-1.5;
+}
+
+.code::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.code::-webkit-scrollbar-thumb {
+  @apply rounded-lg;
+  @apply bg-gray-200;
+  @apply dark:bg-gray-500;
+}
+
+.code::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-300;
+  @apply dark:bg-gray-400;
+}
+
+/*
+ * Label
+ * Label in the top left of the code block
+ */
+
+.label {
+  @apply absolute top-0 left-5 text-xs rounded-b-md px-4 py-1 bg-gray-200 text-gray-800;
+}
+
+/*
+ * Language
+ * ...Add here the languages you want to highlight
+ */
+
+.label[data-language='js'],
+.label[data-language='jsx'] {
+  @apply bg-yellow-200;
+}
+
+.label[data-language='ts'],
+.label[data-language='tsx'] {
+  @apply bg-sky-700 text-white;
+}
+
+/*
+ * Copy button
+ * Copy button in the top right of the code block
+ */
+
+.button-wrapper {
+  @apply transition-all duration-150 absolute top-2 right-2 opacity-0;
+}

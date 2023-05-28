@@ -3,8 +3,6 @@ import { makeTitle } from '@/utils/metadata';
 import { allPosts } from 'contentlayer/generated';
 import type { Metadata } from 'next';
 
-import { join } from 'path';
-
 interface Props {
   params: {
     categorySlug: string;
@@ -13,7 +11,9 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = allPosts.find(post => post._raw.flattenedPath === join(params.categorySlug, params.postSlug));
+  const post = allPosts.find(post => {
+    return post._raw.flattenedPath === decodeURI(params.postSlug);
+  });
 
   return {
     title: makeTitle({ title: post?.title ?? '' }),

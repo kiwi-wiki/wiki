@@ -3,9 +3,8 @@
 .markdown {
   @apply text-lg leading-relaxed text-gray-600;
 }
+
 .markdown p,
-.markdown ul,
-.markdown ol,
 .markdown blockquote {
   @apply my-6;
 }
@@ -38,11 +37,22 @@
 /************************** List ********************************/
 
 .markdown ul {
-  @apply list-disc list-inside;
+  @apply list-disc list-outside ml-7 mb-6;
 }
 
 .markdown ol {
-  @apply list-decimal list-inside;
+  @apply list-decimal list-outside ml-7 mb-6;
+}
+
+.markdown ul ul,
+.markdown ul ol,
+.markdown ol ul,
+.markdown ol ol {
+  @apply ml-4 mb-0;
+}
+
+.markdown li {
+  @apply my-1;
 }
 
 /************************** Code ********************************/

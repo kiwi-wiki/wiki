@@ -1,9 +1,9 @@
 import { Navigation } from '@/components/Navigation';
+import '@/styles/global-styles.css';
 import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
-import './global-styles.css';
 
 const notoSansKR = Noto_Sans_KR({
   weight: ['100', '300', '400', '500', '700', '900'],

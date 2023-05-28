@@ -1,3 +1,4 @@
+import { CategoryBreadcrumb } from '@/app/[categorySlug]/CategoryBreadcrumb';
 import { PostCard } from '@/components/PostCard';
 import { findPostsByCategory } from '@/lib/api';
 import { makeTitle } from '@/utils/metadata';
@@ -22,8 +23,9 @@ export default function CategoryPage({ params }: Props) {
   const classifiedPosts = classifyByFirstLetter(posts);
 
   return (
-    <div className="flex">
-      <div className="w-full h-full">
+    <div className="flex p-4">
+      <div className="w-full h-full flex flex-col gap-10">
+        <CategoryBreadcrumb categoryUrl={params.categorySlug} />
         <div className="flex flex-col gap-10">
           <h1 className="font-bold text-3xl">{decodeURI(params.categorySlug)}</h1>
           {Object.entries(classifiedPosts).map(([letter, posts]) => (
@@ -46,7 +48,7 @@ export default function CategoryPage({ params }: Props) {
           ))}
         </div>
       </div>
-      <div className="w-60" />
+      <div className="w-64" />
     </div>
   );
 }

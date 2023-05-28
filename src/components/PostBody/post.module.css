@@ -1,0 +1,80 @@
+/* reset */
+
+.markdown {
+  @apply text-lg leading-relaxed text-gray-600;
+}
+.markdown p,
+.markdown ul,
+.markdown ol,
+.markdown blockquote {
+  @apply my-6;
+}
+
+/************************** Heading ********************************/
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  @apply font-extrabold text-gray-800;
+}
+.markdown h1 {
+  @apply text-3xl mt-12 mb-4 leading-loose;
+}
+.markdown h2 {
+  @apply text-2xl mt-12 mb-4 leading-relaxed;
+}
+.markdown h3 {
+  @apply text-xl mt-8 mb-4 leading-normal;
+}
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  @apply text-lg mt-10 mb-4 leading-tight;
+}
+
+/************************** List ********************************/
+
+.markdown ul {
+  @apply list-disc list-inside;
+}
+
+.markdown ol {
+  @apply list-decimal list-inside;
+}
+
+/************************** Code ********************************/
+
+.markdown code:not(pre code) {
+  @apply font-semibold text-black p-1 text-sm before:content-['`'] after:content-['`'];
+}
+
+/************************** Pre ********************************/
+
+/* <pre/> 가 연속으로 존재할 때 간격 */
+.markdown pre + pre,
+.markdown div[data-rehype-pretty-code-fragment] + div[data-rehype-pretty-code-fragment] {
+  @apply mt-3;
+}
+
+@media (prefers-color-scheme: dark) {
+  .markdown pre[data-theme='light'],
+  .markdown code[data-theme='light'] {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+  .markdown pre[data-theme='dark'],
+  .markdown code[data-theme='dark'] {
+    display: none;
+  }
+}
+
+/**************************** Blockquote ********************************/
+
+.markdown blockquote {
+  @apply border-l-4 border-rose-300 px-8 bg-rose-50 p-1 rounded-r-lg;
+}

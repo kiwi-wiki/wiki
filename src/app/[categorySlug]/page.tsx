@@ -1,6 +1,7 @@
 import { CategoryBreadcrumb } from '@/app/[categorySlug]/CategoryBreadcrumb';
 import { Divider } from '@/components/Divider';
 import { PostCard } from '@/components/PostCard';
+import { PageHeader } from '@/components/PostHeader';
 import { findPostsByCategory } from '@/lib/api';
 import { makeTitle } from '@/utils/metadata';
 import { classifyByFirstLetter } from '@/utils/misc';
@@ -24,32 +25,29 @@ export default function CategoryPage({ params }: Props) {
   const classifiedPosts = classifyByFirstLetter(posts);
 
   return (
-    <main className="flex p-4">
-      <div className="w-full h-full flex flex-col gap-10">
-        <CategoryBreadcrumb categoryUrl={params.categorySlug} />
-        <div className="flex flex-col gap-10">
-          <h1 className="font-bold text-3xl">{decodeURI(params.categorySlug)}</h1>
-          {Object.entries(classifiedPosts).map(([letter, posts]) => (
-            <div key={letter}>
-              <div className="flex items-center gap-3">
-                <div className="font-bold text-gray-300 dark:text-gray-600">{letter}</div>
-                <Divider />
-              </div>
-              <div className="mt-3 mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {posts.map(post => (
-                  <PostCard
-                    key={post._raw.flattenedPath}
-                    href={join(params.categorySlug, post._raw.flattenedPath)}
-                    title={post.title}
-                    description={post.description}
-                  />
-                ))}
-              </div>
+    <main className="flex flex-col gap-4 md:gap-10 w-full h-full p-2 md:p-4 max-w-3xl">
+      <CategoryBreadcrumb categoryUrl={params.categorySlug} />
+      <div className="w-full flex flex-col gap-4 md:gap-10">
+        <PageHeader title={decodeURI(params.categorySlug)} />
+        {Object.entries(classifiedPosts).map(([letter, posts]) => (
+          <div key={letter} className="w-full">
+            <div className="w-full flex items-center gap-3 text-xs md:text-base">
+              <div className="font-bold text-gray-300 dark:text-gray-600">{letter}</div>
+              <Divider />
             </div>
-          ))}
-        </div>
+            <div className="mt-3 mb-4 md:mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {posts.map(post => (
+                <PostCard
+                  key={post._raw.flattenedPath}
+                  href={join(params.categorySlug, post._raw.flattenedPath)}
+                  title={post.title}
+                  description={post.description}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
-      <div className="w-64" />
     </main>
   );
 }

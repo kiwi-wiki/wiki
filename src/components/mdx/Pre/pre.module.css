@@ -1,16 +1,14 @@
 .pre {
-  /* Common */
-  @apply text-sm font-mono rounded-md relative overflow-hidden font-normal;
+  @apply text-[10px] font-mono rounded-md relative overflow-hidden font-normal;
+  @apply md:text-xs;
+  @apply lg:text-sm;
 
-  /* Light */
   @apply border border-gray-200 bg-gray-50;
-
-  /* Dark */
   @apply dark:bg-gray-800 dark:text-white dark:border-gray-800;
 }
 
 .code {
-  @apply p-5 pt-10 overflow-x-scroll;
+  @apply p-3 md:px-5 pt-10 overflow-x-scroll;
 }
 
 .code::-webkit-scrollbar {
@@ -38,7 +36,8 @@
  */
 
 .label {
-  @apply absolute top-0 left-5 text-xs rounded-b-md px-4 py-1 bg-gray-200 text-gray-800;
+  @apply absolute top-0 left-3 text-[10px] rounded-b-md px-4 py-1 bg-gray-200 text-gray-800;
+  @apply md:text-xs md:left-5;
 }
 
 /*

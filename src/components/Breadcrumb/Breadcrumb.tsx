@@ -18,7 +18,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadCrumbProps>((props, ref) 
   );
 
   return (
-    <nav ref={ref} className="flex text-sm items-center gap-1.5">
+    <nav ref={ref} className="flex text-xs md:text-sm items-center gap-1.5">
       {clone}
     </nav>
   );

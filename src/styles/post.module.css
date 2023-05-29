@@ -1,61 +1,85 @@
 /* reset */
 
 .markdown {
-  @apply text-lg leading-relaxed font-medium;
+  @apply text-sm leading-relaxed font-medium;
+  @apply md:text-base;
+  @apply lg:text-lg;
 
   @apply text-gray-600;
   @apply dark:text-gray-400;
 }
 
-.markdown p,
-.markdown blockquote {
-  @apply my-6;
+.markdown p {
+  @apply my-2;
+  @apply md:my-3;
+  @apply lg:my-4;
 }
 
-/************************** Heading ********************************/
+.markdown blockquote {
+  @apply my-5;
+}
 
 .markdown h1,
 .markdown h2,
 .markdown h3,
 .markdown h4,
 .markdown h5,
-.markdown h6 {
-  @apply font-extrabold;
+.markdown h6,
+.markdown strong,
+.markdown b {
+  @apply font-bold;
 
   @apply text-gray-800;
   @apply dark:text-gray-50;
 }
 
+/************************** Heading ********************************/
+
 .markdown h1 {
-  @apply text-3xl mt-12 mb-4 leading-loose;
+  @apply text-xl mt-12 mb-4 leading-loose;
+  @apply md:text-2xl;
+  @apply lg:text-3xl;
 }
 .markdown h2 {
-  @apply text-2xl mt-12 mb-4 leading-relaxed;
+  @apply text-lg mt-6 mb-3 leading-relaxed;
+  @apply md:text-xl md:mt-8 md:mb-3;
+  @apply lg:text-2xl lg:mt-12 lg:mb-4;
 }
 .markdown h3 {
-  @apply text-xl mt-8 mb-4 leading-normal;
+  @apply text-base mt-4 mb-3 leading-normal;
+  @apply md:text-lg md:mt-6 md:mb-3;
+  @apply lg:text-xl lg:mt-8 lg:mb-4;
 }
 .markdown h4,
 .markdown h5,
 .markdown h6 {
-  @apply text-lg mt-10 mb-4 leading-tight;
+  @apply text-sm mt-4 mb-2 leading-tight;
+  @apply md:text-base md:mt-5 md:mb-3;
+  @apply lg:text-lg lg:mt-6 lg:mb-3;
 }
 
 /************************** List ********************************/
 
+.markdown ul,
+.markdown ol {
+  @apply my-4 ml-5;
+  @apply md:my-5 md:ml-6;
+  @apply lg:my-6 lg:ml-8;
+}
+
 .markdown ul {
-  @apply list-disc list-outside ml-7 mb-6;
+  @apply list-disc;
 }
 
 .markdown ol {
-  @apply list-decimal list-outside ml-7 mb-6;
+  @apply list-decimal;
 }
 
 .markdown ul ul,
 .markdown ul ol,
 .markdown ol ul,
 .markdown ol ol {
-  @apply ml-4 mb-0;
+  @apply ml-4 my-0;
 }
 
 .markdown li {
@@ -65,7 +89,8 @@
 /************************** Code ********************************/
 
 .markdown code:not(pre code) {
-  @apply font-semibold p-1 text-sm before:content-['`'] after:content-['`'];
+  @apply font-semibold p-1 text-xs before:content-['`'] after:content-['`'];
+  @apply md:text-sm;
 
   @apply text-gray-800;
   @apply dark:text-gray-50;
@@ -96,7 +121,8 @@
 /**************************** Blockquote ********************************/
 
 .markdown blockquote {
-  @apply border-l-4 px-8  p-1;
+  @apply border-l-4 px-5 py-1;
+  @apply md:px-8;
 
   @apply border-rose-300 bg-rose-50;
   @apply dark:border-gray-500 dark:bg-gray-800;
@@ -109,4 +135,12 @@
 
   @apply border-gray-100;
   @apply dark:border-gray-700;
+}
+
+/************************** Link ********************************/
+
+.markdown a {
+  @apply font-medium border-b;
+  @apply text-gray-900 border-blue-400;
+  @apply dark:text-gray-50 dark:border-blue-600;
 }

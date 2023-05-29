@@ -16,7 +16,7 @@ export const BreadcrumbItem = forwardRef<HTMLLIElement, Props>((props, ref) => {
     <li ref={ref} className={classNames('list-none flex items-center', isLastChild ? 'text-gray-800' : '')}>
       {!isLastChild && (
         <>
-          <Link className="hover:text-rose-500" href={encodeURI(href)}>
+          <Link className="hover:text-rose-500" href={href}>
             {decodeURI(text)}
           </Link>
           <span className="text-gray-400">{seperator}</span>

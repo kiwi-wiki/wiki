@@ -20,8 +20,8 @@ export function PostBody({ content }: Props) {
   const MDXContent = useMDXComponent(content);
 
   return (
-    <div className={classNames('max-w-2xl text-lg leading-relaxed text-gray-600', postStyles.markdown)}>
+    <article className={classNames('w-full select-none text-lg leading-relaxed text-gray-600', postStyles.markdown)}>
       <MDXContent components={compoenents} />
-    </div>
+    </article>
   );
 }

@@ -6,3 +6,22 @@ html,
 body {
   height: 100%;
 }
+
+::-webkit-scrollbar {
+  @apply w-1.5 h-1.5;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-lg;
+  @apply bg-gray-200;
+  @apply dark:bg-gray-500;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-300;
+  @apply dark:bg-gray-400;
+}

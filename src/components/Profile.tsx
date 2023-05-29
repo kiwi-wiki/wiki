@@ -6,7 +6,7 @@ interface Props {
   bio?: string;
 }
 
-function Profile({ avartar, name, bio }: Props) {
+export function Profile({ avartar, name, bio }: Props) {
   return (
     <div className="flex flex-row gap-3">
       <Image className="rounded-full w-10 h-10" width={40} height={40} src={avartar} alt="avatar" />
@@ -17,5 +17,3 @@ function Profile({ avartar, name, bio }: Props) {
     </div>
   );
 }
-
-export default Profile;

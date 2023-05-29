@@ -1,5 +1,7 @@
 import { defineDocumentType, makeSource } from '@contentlayer/source-files';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePrettyCode from 'rehype-pretty-code';
+import rehypeSlug from 'rehype-slug';
 import { visit } from 'unist-util-visit';
 
 export const Post = defineDocumentType(() => ({
@@ -61,6 +63,8 @@ export default makeSource({
           }
         });
       },
+      [rehypeSlug],
+      [rehypeAutolinkHeadings, { behavior: 'prepend' }],
     ],
   },
 });

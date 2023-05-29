@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ko">
       <body className={notoSansKR.className}>
         <div className="relative max-w-screen-xl px-4 py-10 mx-auto md:flex md:py-10 md:flex-row">
-          <div className="gap-5 hidden md:flex w-72 md:shrink-0 sticky top-10 h-full md:flex-col md:justify-between">
+          <div className="gap-5 hidden md:flex w-64 md:shrink-0 sticky top-10 h-full md:flex-col md:justify-between">
             <Link href="/">
               <Image src="/logo.svg" width={130} height={70} alt="logo" />
             </Link>

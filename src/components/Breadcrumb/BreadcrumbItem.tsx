@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import Link from 'next/link';
 import { forwardRef } from 'react';
 
@@ -13,16 +12,16 @@ export const BreadcrumbItem = forwardRef<HTMLLIElement, Props>((props, ref) => {
   const { href, text = '', isLastChild = false, seperator = '/' } = props;
 
   return (
-    <li ref={ref} className={classNames('list-none flex items-center', isLastChild ? 'text-gray-800' : '')}>
+    <li ref={ref} className="list-none flex items-center text-gray-400 dark:text-gray-700">
       {!isLastChild && (
         <>
           <Link className="hover:text-rose-500" href={href}>
             {decodeURI(text)}
           </Link>
-          <span className="text-gray-400">{seperator}</span>
+          <span>{seperator}</span>
         </>
       )}
-      {isLastChild && <span className="text-gray-800">{decodeURI(text)}</span>}
+      {isLastChild && <span className="text-gray-800 dark:text-gray-300">{decodeURI(text)}</span>}
     </li>
   );
 });

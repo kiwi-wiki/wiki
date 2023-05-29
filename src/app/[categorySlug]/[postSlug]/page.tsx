@@ -47,7 +47,9 @@ export default async function PostPage({ params }: Props) {
               <Profile avartar={profile.avatar_url} name={profile.name} bio={profile.bio} />
             </a>
             <div className="flex flex-col gap-2">
-              <span className="text-xs text-gray-400">{`Updated on ${new Date(post?.date ?? '').toDateString()}`}</span>
+              <span className="text-xs text-gray-400 dark:text-gray-600">{`Updated on ${new Date(
+                post?.date ?? ''
+              ).toDateString()}`}</span>
             </div>
           </div>
         </div>
@@ -59,6 +61,14 @@ export default async function PostPage({ params }: Props) {
 }
 
 async function getGithubProfile({ author }: { author: string }) {
+  if (process.env.NODE_ENV === 'development') {
+    return {
+      avatar_url: 'https://avatars.githubusercontent.com/u/32444953?v=4',
+      name: 'Kiwi',
+      bio: 'Frontend Developer',
+    };
+  }
+
   const res = await fetch(`https://api.github.com/users/${author}`);
   const data = await res.json();
 

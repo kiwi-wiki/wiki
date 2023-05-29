@@ -1,4 +1,5 @@
 import { CategoryBreadcrumb } from '@/app/[categorySlug]/CategoryBreadcrumb';
+import { Divider } from '@/components/Divider';
 import { PostCard } from '@/components/PostCard';
 import { findPostsByCategory } from '@/lib/api';
 import { makeTitle } from '@/utils/metadata';
@@ -31,8 +32,8 @@ export default function CategoryPage({ params }: Props) {
           {Object.entries(classifiedPosts).map(([letter, posts]) => (
             <div key={letter}>
               <div className="flex items-center gap-3">
-                <div className="font-bold text-gray-300">{letter}</div>
-                <div className="flex-1 border-b border-gray-200"></div>
+                <div className="font-bold text-gray-300 dark:text-gray-600">{letter}</div>
+                <Divider />
               </div>
               <div className="mt-3 mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {posts.map(post => (

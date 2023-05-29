@@ -7,7 +7,7 @@ interface Props {
 
 export function CategoryBreadcrumb({ categoryUrl }: Props) {
   return (
-    <Breadcrumb seperator={<RxCaretRight size={20} className="text-gray-400" />}>
+    <Breadcrumb seperator={<RxCaretRight size={20} />}>
       <BreadcrumbItem href="/" text="Home" />
       <BreadcrumbItem href={categoryUrl} text={categoryUrl} />
     </Breadcrumb>

@@ -17,6 +17,7 @@ body {
 
 ::-webkit-scrollbar-thumb {
   @apply rounded-lg;
+
   @apply bg-gray-200;
   @apply dark:bg-gray-500;
 }
@@ -24,4 +25,9 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-gray-300;
   @apply dark:bg-gray-400;
+}
+
+body {
+  @apply bg-white text-gray-900;
+  @apply dark:bg-gray-900 dark:text-white;
 }

@@ -3,6 +3,7 @@
 import { Divider } from '@/components/Divider';
 import type { Heading } from '@/utils/dom';
 import { getHeadings } from '@/utils/dom';
+import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import { CgArrowUpR } from 'react-icons/cg';
 
@@ -33,16 +34,19 @@ export function TOC({ title }: Props) {
     <nav className="w-60 shrink-0 order-last hidden lg:block pl-6 pt-16">
       {headings.length !== 0 && (
         <div className="sticky top-10">
-          <h2 className="text-sm font-bold text-gray-500 mb-3">{title}</h2>
+          <h2 className="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3">{title}</h2>
           <li className="flex flex-col gap-2">
             {headings.map(heading => {
               return (
                 <a
                   key={heading.id}
                   href={`#${heading.id}`}
-                  className={`text-sm font-medium text-gray-400 hover:text-gray-600
-                ${listConfig[heading.level].ml}
-                `}
+                  className={classNames(
+                    'text-sm font-medium',
+                    'text-gray-400 hover:text-gray-600',
+                    'dark:text-gray-600 hover:text-gray-400',
+                    listConfig[heading.level].ml
+                  )}
                 >
                   {heading.text}
                 </a>
@@ -53,7 +57,14 @@ export function TOC({ title }: Props) {
           <Divider />
 
           <div className="">
-            <a href="#top" className="font-medium text-gray-400 hover:text-gray-600 flex gap-2 items-center">
+            <a
+              href="#top"
+              className={classNames(
+                'text-sm font-medium flex gap-2 items-center',
+                'text-gray-400 hover:text-gray-600',
+                'dark:text-gray-600 hover:text-gray-400'
+              )}
+            >
               <CgArrowUpR />
               <span className="text-sm">Scroll to top</span>
             </a>

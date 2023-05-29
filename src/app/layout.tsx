@@ -1,8 +1,8 @@
+import { Logo } from '@/assets/Logo';
 import { Navigation } from '@/components/Navigation';
 import '@/styles/global-styles.css';
 import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
-import Image from 'next/image';
 import Link from 'next/link';
 
 const notoSansKR = Noto_Sans_KR({
@@ -20,9 +20,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ko">
       <body className={notoSansKR.className}>
         <div className="relative max-w-screen-xl px-4 py-10 mx-auto md:flex md:py-10 md:flex-row">
-          <div className="gap-5 hidden md:flex w-64 md:shrink-0 sticky top-10 h-full md:flex-col md:justify-between">
+          <div className="gap-5 hidden md:flex w-64 md:shrink-0 sticky top-10 h-full md:flex-col md:justify-between text-black dark:text-white">
             <Link href="/">
-              <Image src="/logo.svg" width={130} height={70} alt="logo" />
+              <Logo width={100} height={50} />
             </Link>
             <Navigation />
           </div>

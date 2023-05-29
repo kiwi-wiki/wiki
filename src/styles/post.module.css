@@ -1,7 +1,10 @@
 /* reset */
 
 .markdown {
-  @apply text-lg leading-relaxed text-gray-600 font-medium;
+  @apply text-lg leading-relaxed font-medium;
+
+  @apply text-gray-600;
+  @apply dark:text-gray-400;
 }
 
 .markdown p,
@@ -17,7 +20,10 @@
 .markdown h4,
 .markdown h5,
 .markdown h6 {
-  @apply font-extrabold text-gray-800;
+  @apply font-extrabold;
+
+  @apply text-gray-800;
+  @apply dark:text-gray-50;
 }
 
 .markdown h1 {
@@ -59,7 +65,10 @@
 /************************** Code ********************************/
 
 .markdown code:not(pre code) {
-  @apply font-semibold text-black p-1 text-sm before:content-['`'] after:content-['`'];
+  @apply font-semibold p-1 text-sm before:content-['`'] after:content-['`'];
+
+  @apply text-gray-800;
+  @apply dark:text-gray-50;
 }
 
 /************************** Pre ********************************/
@@ -87,5 +96,17 @@
 /**************************** Blockquote ********************************/
 
 .markdown blockquote {
-  @apply border-l-4 border-rose-300 px-8 bg-rose-50 p-1 rounded-r-lg;
+  @apply border-l-4 px-8  p-1;
+
+  @apply border-rose-300 bg-rose-50;
+  @apply dark:border-gray-500 dark:bg-gray-800;
+}
+
+/************************** Divder ********************************/
+
+.markdown hr {
+  @apply border-0 border-t-2;
+
+  @apply border-gray-100;
+  @apply dark:border-gray-700;
 }

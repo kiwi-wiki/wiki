@@ -7,17 +7,21 @@ import { useEffect, useState } from 'react';
 import { CgArrowUpR } from 'react-icons/cg';
 
 const listConfig = {
-  1: { ml: 'ml-0' },
-  2: { ml: 'ml-0' },
-  3: { ml: 'ml-2' },
-  4: { ml: 'ml-4' },
-  5: { ml: 'ml-6' },
-  6: { ml: 'ml-8' },
+  1: { ml: 'ml-2' },
+  2: { ml: 'ml-2' },
+  3: { ml: 'ml-4' },
+  4: { ml: 'ml-6' },
+  5: { ml: 'ml-8' },
+  6: { ml: 'ml-10' },
 };
 
 // TODO: DOM이 아니라 props로 받아서 렌더링하도록 수정해야 함
 
-export function TOC() {
+interface Props {
+  title?: string;
+}
+
+export function TOC({ title }: Props) {
   const [headings, setHeadings] = useState<Heading[]>([]);
 
   useEffect(() => {
@@ -29,7 +33,7 @@ export function TOC() {
     <nav className="w-60 shrink-0 order-last hidden lg:block pl-6 pt-16">
       {headings.length !== 0 && (
         <div className="sticky top-10">
-          <h2 className="text-sm font-bold text-gray-500 mb-3">Contents</h2>
+          <h2 className="text-sm font-bold text-gray-500 mb-3">{title}</h2>
           <li className="flex flex-col gap-2">
             {headings.map(heading => {
               return (

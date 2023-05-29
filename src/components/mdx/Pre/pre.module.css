@@ -1,6 +1,6 @@
 .pre {
   /* Common */
-  @apply text-sm font-mono rounded-md relative overflow-hidden;
+  @apply text-sm font-mono rounded-md relative overflow-hidden font-normal;
 
   /* Light */
   @apply border border-gray-200 bg-gray-50;

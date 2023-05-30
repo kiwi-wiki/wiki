@@ -9,7 +9,7 @@ export function SideBar() {
       <Link href="/">
         <Logo width={100} height={50} />
       </Link>
-      <div className="flex flex-col w-full gap-2">
+      <div className="flex flex-col w-full gap-3">
         <SearchBar />
         <Navigation />
       </div>

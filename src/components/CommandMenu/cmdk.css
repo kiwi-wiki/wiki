@@ -20,32 +20,43 @@
 }
 
 [cmdk-root] .input-wrapper {
-  @apply border-b p-4;
-  @apply border-gray-200;
+  @apply p-4;
+}
+
+[cmdk-separator] {
+  @apply border-t border-gray-200;
   @apply dark:border-gray-700;
 }
 
 [cmdk-list] {
+  @apply overflow-y-auto flex-1 max-h-[380px] transition-all duration-100;
   height: min(330px, calc(var(--cmdk-list-height)));
-  scroll-padding-block-start: 8px;
-  scroll-padding-block-end: 8px;
-
-  @apply overflow-y-auto flex-1 max-h-[400px] transition-all duration-150;
 }
 
 [cmdk-root] .kbd {
-  @apply text-[10px] uppercase font-mono;
+  @apply text-[10px] font-mono h-7;
   @apply border rounded-md px-2 py-1 inline-flex items-center justify-center;
-  @apply shadow-sm hover:shadow-md transition-all;
 
-  @apply border-gray-200 text-gray-500 hover:border-gray-300 hover:text-gray-600;
-  @apply dark:border-gray-700 dark:text-gray-400 dark:hover:border-gray-600 dark:hover:text-gray-300;
+  @apply border-gray-200 text-gray-500;
+  @apply dark:border-gray-700 dark:text-gray-400;
+}
+
+[cmdk-root] button.kbd {
+  @apply shadow-sm hover:shadow-md transition-all;
+  @apply hover:border-gray-300 hover:text-gray-600;
+  @apply dark:hover:border-gray-600 dark:hover:text-gray-300;
 }
 
 [cmdk-item] {
-  @apply cursor-pointer h-[48px] rounded-md text-sm flex items-center gap-2 px-4;
+  @apply cursor-pointer py-3 min-h-[60px] rounded-md text-base flex items-center gap-4 px-4;
+
   @apply text-gray-700 hover:bg-gray-100;
-  @apply dark:text-gray-300 dark:hover:text-gray-100;
+  @apply dark:text-gray-300 dark:hover:bg-gray-800;
+}
+
+[data-selected='true'] {
+  @apply bg-gray-100;
+  @apply dark:bg-gray-800;
 }
 
 [cmdk-empty] {

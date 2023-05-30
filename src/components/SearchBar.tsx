@@ -1,20 +1,16 @@
 'use client';
 
-import { CommandMenu } from '@/lib/cmdk';
+import { CommandMenu } from '@/components/CommandMenu';
+import { useBoolean } from '@/hooks/use-boolean';
 import classNames from 'classnames';
-import { useState } from 'react';
 
 export function SearchBar() {
-  const [open, setOpen] = useState<boolean>(false);
-
-  const handleOpenChange = () => {
-    setOpen(open => !open);
-  };
+  const [open, { toggle }] = useBoolean();
 
   return (
     <>
       <button
-        onClick={handleOpenChange}
+        onClick={toggle}
         className={classNames(
           'text-sm font-light border px-3 py-2 rounded-md flex justify-between',
           'text-gray-400 border-gray-200 hover:border-gray-300',
@@ -24,7 +20,7 @@ export function SearchBar() {
         <span>Search...</span>
         <span>⌘K</span>
       </button>
-      <CommandMenu open={open} onOpenChange={handleOpenChange} />
+      <CommandMenu open={open} onOpenChange={toggle} />
     </>
   );
 }

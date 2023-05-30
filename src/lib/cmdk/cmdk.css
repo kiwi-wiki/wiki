@@ -1,51 +1,53 @@
-[cmdk-overlay] {
-  @apply fixed inset-0;
-  @apply bg-white bg-opacity-80;
-  @apply dark:bg-black dark:bg-opacity-80;
+[cmdk-root] {
+  @apply fixed inset-0 my-auto mx-auto rounded-lg border z-[10000] bg-clip-padding shadow-dialog animate-dialogShow;
 
-  animation: overlayShow 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  @apply max-w-[calc(100%-8px)] max-h-[500px];
+  @apply md:max-w-2xl md:top-1/4 md:bottom-auto;
+
+  @apply border-gray-200 bg-white;
+  @apply dark:bg-gray-900 dark:border-gray-700;
 }
 
-[cmdk-dialog] {
-  @apply rounded-lg border fixed top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[640px] max-h-[85vh] px-3 py-1;
-  @apply border-gray-200 bg-white;
-  @apply dark:bg-gray-950 dark:border-gray-800;
+[cmdk-overlay] {
+  @apply fixed inset-0 animate-overlay;
 
-  box-shadow: 0 16px 70px rgba(0, 0, 0, 0.2);
-  animation: contentShow 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  @apply bg-white bg-opacity-80;
+  @apply dark:bg-black dark:bg-opacity-80;
 }
 
 [cmdk-input] {
-  @apply w-full rounded-t-lg focus:outline-none py-4 px-2 border-b bg-inherit;
-  @apply border-gray-200;
-  @apply dark:border-gray-800;
+  @apply w-full rounded-t-lg outline-none  bg-inherit text-base;
+}
+
+[cmdk-root] .input-wrapper {
+  @apply p-4;
 }
 
 [cmdk-list] {
-  min-height: 300px;
-  height: var(--cmdk-list-height);
-  max-height: 500px;
-  transition: height 100ms ease;
-  scroll-padding-block-start: 8px;
-  scroll-padding-block-end: 8px;
+  @apply overflow-y-auto flex-1 p-2 max-h-[400px];
 }
 
-@keyframes overlayShow {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+[cmdk-root] .kbd {
+  @apply text-[10px] uppercase font-mono;
+  @apply border rounded-md px-2 py-1 inline-flex items-center justify-center;
+  @apply shadow-sm hover:shadow-md transition-all;
+
+  @apply border-gray-200 text-gray-500 hover:border-gray-300 hover:text-gray-600;
+  @apply dark:border-gray-700 dark:text-gray-400 dark:hover:border-gray-600 dark:hover:text-gray-300;
 }
 
-@keyframes contentShow {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -48%) scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
+[cmdk-item] {
+  @apply cursor-pointer h-[48px] rounded-md text-sm flex items-center gap-2 px-4;
+  @apply text-gray-700 hover:bg-gray-100;
+  @apply dark:text-gray-300 dark:hover:text-gray-100;
+}
+
+[cmdk-separator] {
+  @apply h-[1px] w-full border-none;
+  @apply bg-gray-200;
+  @apply dark:bg-gray-700;
+}
+
+[cmdk-empty] {
+  @apply text-gray-400 text-base flex items-center justify-center h-20;
 }

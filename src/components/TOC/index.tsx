@@ -58,7 +58,7 @@ export function TOC({ title }: Props) {
 
           <div className="">
             <a
-              href="#top"
+              href="#"
               className={classNames(
                 'text-sm font-medium flex gap-2 items-center',
                 'text-gray-400 hover:text-gray-600',

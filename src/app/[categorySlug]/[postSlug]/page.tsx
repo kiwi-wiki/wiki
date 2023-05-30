@@ -34,7 +34,7 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <>
-      <main className="flex flex-col gap-4 md:gap-10 p-2 md:p-6 w-full min-w-0" id="top">
+      <main className="flex flex-col gap-4 md:gap-10 p-2 md:p-6 w-full min-w-0">
         <PostBreadcrumb
           categoryUrl={params.categorySlug}
           postUrl={join(params.categorySlug, params.postSlug)}

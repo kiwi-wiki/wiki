@@ -1,6 +1,5 @@
 import { Header } from '@/components/Header';
 import { SideBar } from '@/components/SideBar';
-
 import '@/styles/global-styles.css';
 
 import type { Metadata } from 'next';

@@ -1,11 +1,11 @@
 /* reset */
 
 .markdown {
-  @apply text-sm leading-relaxed font-medium;
+  @apply text-sm leading-relaxed font-normal;
   @apply md:text-base;
   @apply lg:text-lg;
 
-  @apply text-gray-600;
+  @apply text-gray-800;
   @apply dark:text-gray-400;
 }
 

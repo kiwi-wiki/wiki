@@ -1,5 +1,5 @@
 [cmdk-root] {
-  @apply fixed inset-0 my-auto mx-auto rounded-lg border z-[10000] bg-clip-padding shadow-dialog animate-dialogShow;
+  @apply fixed inset-0 my-auto mx-auto rounded-lg border z-[10000] bg-clip-padding shadow-dialog animate-dialogShow transition-all;
 
   @apply max-w-[calc(100%-8px)] max-h-[500px];
   @apply md:max-w-2xl md:top-1/4 md:bottom-auto;
@@ -20,11 +20,17 @@
 }
 
 [cmdk-root] .input-wrapper {
-  @apply p-4;
+  @apply border-b p-4;
+  @apply border-gray-200;
+  @apply dark:border-gray-700;
 }
 
 [cmdk-list] {
-  @apply overflow-y-auto flex-1 p-2 max-h-[400px];
+  height: min(330px, calc(var(--cmdk-list-height)));
+  scroll-padding-block-start: 8px;
+  scroll-padding-block-end: 8px;
+
+  @apply overflow-y-auto flex-1 max-h-[400px] transition-all duration-150;
 }
 
 [cmdk-root] .kbd {
@@ -42,12 +48,6 @@
   @apply dark:text-gray-300 dark:hover:text-gray-100;
 }
 
-[cmdk-separator] {
-  @apply h-[1px] w-full border-none;
-  @apply bg-gray-200;
-  @apply dark:bg-gray-700;
-}
-
 [cmdk-empty] {
-  @apply text-gray-400 text-base flex items-center justify-center h-20;
+  @apply text-gray-400 text-base flex items-center justify-center h-20 gap-1;
 }

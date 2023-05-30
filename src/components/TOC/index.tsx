@@ -34,7 +34,7 @@ export function TOC({ title }: Props) {
     <nav className="w-60 shrink-0 order-last hidden lg:block pl-6 pt-16">
       {headings.length !== 0 && (
         <div className="sticky top-10">
-          <h2 className="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3">{title}</h2>
+          <h2 className="text-sm font-bold text-gray-600 dark:text-gray-400 mb-3">{title}</h2>
           <li className="flex flex-col gap-2">
             {headings.map(heading => {
               return (

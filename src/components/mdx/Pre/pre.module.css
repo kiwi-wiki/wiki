@@ -4,7 +4,7 @@
   @apply lg:text-sm;
 
   @apply border border-gray-200 bg-gray-50;
-  @apply dark:bg-gray-800 dark:text-white dark:border-gray-800;
+  @apply dark:bg-gray-900 dark:text-white dark:border-gray-700;
 }
 
 .code {

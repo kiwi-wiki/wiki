@@ -14,7 +14,7 @@ export function PostCard({ href, title, description }: Props) {
       className={classNames(
         'block rounded-md border p-4 md:p-6 space-y-2 transition-colors duration-150',
         'border-gray-200 bg-gray-50 hover:bg-gray-100',
-        'dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700'
+        'dark:border-gray-700 dark:bg-gray-900 dark:hover:bg-gray-800'
       )}
     >
       <h3 className="text-md md:text-lg font-medium leading-snug truncate">{title}</h3>

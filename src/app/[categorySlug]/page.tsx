@@ -25,7 +25,7 @@ export default function CategoryPage({ params }: Props) {
   const classifiedPosts = classifyByFirstLetter(posts);
 
   return (
-    <main className="flex flex-col gap-4 md:gap-10 w-full h-full p-2 md:p-4 max-w-3xl">
+    <main className="flex flex-col gap-4 md:gap-10 w-full h-full p-2 md:p-6 max-w-3xl">
       <CategoryBreadcrumb categoryUrl={params.categorySlug} />
       <div className="w-full flex flex-col gap-4 md:gap-10">
         <PageHeader title={decodeURI(params.categorySlug)} />

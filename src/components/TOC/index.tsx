@@ -44,7 +44,7 @@ export function TOC({ title }: Props) {
                   className={classNames(
                     'text-sm font-medium',
                     'text-gray-400 hover:text-gray-600',
-                    'dark:text-gray-600 hover:text-gray-400',
+                    'dark:text-gray-600 dark:hover:text-gray-400',
                     listConfig[heading.level].ml
                   )}
                 >
@@ -62,7 +62,7 @@ export function TOC({ title }: Props) {
               className={classNames(
                 'text-sm font-medium flex gap-2 items-center',
                 'text-gray-400 hover:text-gray-600',
-                'dark:text-gray-600 hover:text-gray-400'
+                'dark:text-gray-600 dark:hover:text-gray-400'
               )}
             >
               <CgArrowUpR />

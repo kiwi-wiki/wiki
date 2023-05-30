@@ -18,7 +18,7 @@ export function NavItem({ route }: Props) {
       href={route.href}
     >
       <li className="transition-all py-2 hover:px-2 relative break-all overflow-hidden h-10">
-        <div className="text-lg">{route.name}</div>
+        <div className="text-md">{route.name}</div>
       </li>
     </Link>
   );

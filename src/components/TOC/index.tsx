@@ -1,10 +1,6 @@
-'use client';
-
 import { Divider } from '@/components/Divider';
 import type { Heading } from '@/utils/dom';
-import { getHeadings } from '@/utils/dom';
 import classNames from 'classnames';
-import { useEffect, useState } from 'react';
 import { CgArrowUpR } from 'react-icons/cg';
 
 const listConfig = {
@@ -16,20 +12,12 @@ const listConfig = {
   6: { ml: 'ml-10' },
 };
 
-// TODO: DOM이 아니라 props로 받아서 렌더링하도록 수정해야 함
-
 interface Props {
   title?: string;
+  headings: Heading[];
 }
 
-export function TOC({ title }: Props) {
-  const [headings, setHeadings] = useState<Heading[]>([]);
-
-  useEffect(() => {
-    const headings = getHeadings({ target: document.querySelector('article'), levels: [1, 2, 3] });
-    setHeadings(headings);
-  }, []);
-
+export function TOC({ title, headings }: Props) {
   return (
     <nav className="w-60 shrink-0 order-last hidden lg:block pl-6 pt-16">
       {headings.length !== 0 && (

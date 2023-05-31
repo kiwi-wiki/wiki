@@ -55,7 +55,7 @@ export default async function PostPage({ params }: Props) {
         </div>
         <PostBody content={post?.body.code ?? ''} />
       </main>
-      <TOC title={post?.title} />
+      <TOC title={post?.title} headings={post?.headings} />
     </>
   );
 }

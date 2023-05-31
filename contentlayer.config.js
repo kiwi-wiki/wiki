@@ -9,16 +9,41 @@ export const Post = defineDocumentType(() => ({
   contentType: 'mdx',
   filePathPattern: `**/*.mdx`,
 
+  // 아래 필드는 .mdx 파일에 반드시 있어야 함
   fields: {
     title: { type: 'string', required: true },
-    date: { type: 'date', required: true },
     category: { type: 'string', required: true },
     description: { type: 'string', required: true },
     author: { type: 'string', required: true },
+
+    // 글이 주기적으로 업데이트 되어야 하기 때문
+    date: { type: 'date', required: true },
   },
 
   computedFields: {
-    url: { type: 'string', resolve: post => `/posts/${post._raw.flattenedPath}` },
+    // url 이 필요한 경우 주석 해제
+    // url: { type: 'string', resolve: post => `/posts/${post._raw.flattenedPath}` },
+
+    // TOC 를 빌드타임에 만들기 위해 필요한 필드
+    headings: {
+      type: 'json',
+      resolve: async doc => {
+        // #, ##, ### 으로 시작하는 텍스트를 찾음
+        const headingsRegex = /\n(?<flag>#{1,3})\s+(?<content>.+)/g;
+
+        const headings = Array.from(doc.body.raw.matchAll(headingsRegex)).map(({ groups }) => {
+          const flag = groups?.flag;
+          const content = groups?.content;
+          return {
+            level: flag.length,
+            id: content,
+            text: content,
+          };
+        });
+
+        return headings;
+      },
+    },
   },
 }));
 
@@ -28,6 +53,10 @@ export default makeSource({
   mdx: {
     remarkPlugins: [],
     rehypePlugins: [
+      /**
+       * 1. prettify 전에 원시 code 텍스트를 node.raw에 추가
+       * prettify 전에 raw를 추가해야 prettify 후에 raw를 pre에 추가할 수 있음
+       **/
       () => tree => {
         visit(tree, node => {
           if (node?.type === 'element' && node?.tagName === 'pre') {
@@ -39,6 +68,8 @@ export default makeSource({
           }
         });
       },
+
+      // 2. prettify
       [
         rehypePrettyCode,
         {
@@ -48,6 +79,11 @@ export default makeSource({
           },
         },
       ],
+
+      /**
+       * 3. prettify 후에 raw를 pre에 추가
+       * 커스텀 MDX 컴포넌트(<Pre />)에서 raw를 사용할 수 있음
+       */
       () => tree => {
         visit(tree, node => {
           if (node?.type === 'element' && node?.tagName === 'div') {
@@ -64,6 +100,8 @@ export default makeSource({
         });
       },
       [rehypeSlug],
+
+      // add anchor links to headings
       [rehypeAutolinkHeadings, { behavior: 'prepend' }],
     ],
   },

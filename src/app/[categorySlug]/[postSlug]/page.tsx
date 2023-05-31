@@ -2,7 +2,7 @@ import { PostBreadcrumb } from '@/app/[categorySlug]/[postSlug]/PostBreadcrumb';
 import { PostBody } from '@/components/PostBody';
 import { PageHeader } from '@/components/PostHeader';
 import { Profile } from '@/components/Profile';
-import { TOC } from '@/components/TOC';
+import { TableOfContent } from '@/components/TableOofContent';
 import { makeTitle } from '@/utils/metadata';
 import { allPosts } from 'contentlayer/generated';
 import type { Metadata } from 'next';
@@ -55,7 +55,7 @@ export default async function PostPage({ params }: Props) {
         </div>
         <PostBody content={post?.body.code ?? ''} />
       </main>
-      <TOC title={post?.title} headings={post?.headings} />
+      <TableOfContent title={post?.title} headings={post?.headings} />
     </>
   );
 }

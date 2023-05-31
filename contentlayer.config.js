@@ -36,7 +36,7 @@ export const Post = defineDocumentType(() => ({
           const content = groups?.content;
           return {
             level: flag.length,
-            id: content,
+            id: content.split(' ').join('-').toLowerCase(),
             text: content,
           };
         });

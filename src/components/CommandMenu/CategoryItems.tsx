@@ -5,14 +5,14 @@ import { CommandItem } from 'cmdk';
 import type { Post } from 'contentlayer/generated';
 import { useRouter } from 'next/navigation';
 import { join } from 'path';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { RxFileText } from 'react-icons/rx';
 
 export function CategoryItems() {
   const { currentPage } = useCommandMenu();
   const { onOpenChange } = useCommandMenuActions();
   const router = useRouter();
-  const posts = findPostsByCategory(currentPage);
+  const posts = useMemo(() => findPostsByCategory(currentPage), [currentPage]);
 
   const handleSelect = useCallback(
     (post: Post) => {
@@ -25,9 +25,9 @@ export function CategoryItems() {
   return (
     <>
       {posts.map(post => (
-        <CommandItem key={post._id} onSelect={() => handleSelect(post)}>
+        <CommandItem key={post._id} onSelect={() => handleSelect(post)} value={post.title}>
           <RxFileText size={20} className="shrink-0" />
-          <span>{post.title}</span>
+          {post.title}
         </CommandItem>
       ))}
     </>

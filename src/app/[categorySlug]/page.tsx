@@ -2,7 +2,7 @@ import { CategoryBreadcrumb } from '@/app/[categorySlug]/CategoryBreadcrumb';
 import { Divider } from '@/components/Divider';
 import { PostCard } from '@/components/PostCard';
 import { PageHeader } from '@/components/PostHeader';
-import { findPostsByCategory } from '@/lib/api';
+import { findCategories, findPostsByCategory } from '@/lib/api';
 import { makeTitle } from '@/utils/metadata';
 import { classifyByFirstLetter } from '@/utils/misc';
 import type { Metadata } from 'next';
@@ -14,13 +14,24 @@ interface Props {
   };
 }
 
+export async function generateStaticParams() {
+  const categories = findCategories();
+  console.log('🚀 ~ file: page.tsx:19 ~ generateStaticParams ~ categories:', categories);
+
+  return categories.map(category => ({
+    params: {
+      categorySlug: category,
+    },
+  }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: makeTitle({ title: params.categorySlug }),
   };
 }
 
-export default function CategoryPage({ params }: Props) {
+export default async function CategoryPage({ params }: Props) {
   const posts = findPostsByCategory(decodeURI(params.categorySlug));
   const classifiedPosts = classifyByFirstLetter(posts);
 

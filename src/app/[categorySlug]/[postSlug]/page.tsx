@@ -25,6 +25,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+export async function generateStaticParams() {
+  return [
+    {
+      slug: 'blog',
+    },
+  ];
+}
+
 export default async function PostPage({ params }: Props) {
   const post = allPosts.find(post => {
     return post._raw.flattenedPath === decodeURI(params.postSlug);
@@ -55,7 +63,7 @@ export default async function PostPage({ params }: Props) {
         </div>
         <PostBody content={post?.body.code ?? ''} />
       </main>
-      <TableOfContent title={post?.title} headings={post?.headings} />
+      <TableOfContent title={post?.title} headings={post?.headings ?? []} />
     </>
   );
 }

@@ -5,14 +5,14 @@ import { CommandItem } from 'cmdk';
 import type { Post } from 'contentlayer/generated';
 import { useRouter } from 'next/navigation';
 import { join } from 'path';
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { RxFileText } from 'react-icons/rx';
 
 export function CategoryItems() {
   const { currentPage } = useCommandMenu();
   const { onOpenChange } = useCommandMenuActions();
   const router = useRouter();
-  const posts = useMemo(() => findPostsByCategory(currentPage), [currentPage]);
+  const posts = findPostsByCategory(currentPage);
 
   const handleSelect = useCallback(
     (post: Post) => {

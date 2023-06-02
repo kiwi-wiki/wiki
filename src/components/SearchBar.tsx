@@ -19,8 +19,8 @@ export function SearchBar() {
       >
         <span>Search...</span>
         <span>⌘K</span>
+        <CommandMenu open={open} onOpenChange={toggle} />
       </button>
-      <CommandMenu open={open} onOpenChange={toggle} />
     </>
   );
 }

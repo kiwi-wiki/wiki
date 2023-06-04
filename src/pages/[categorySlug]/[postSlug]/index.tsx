@@ -3,7 +3,6 @@ import { PostBreadcrumb } from '@/components/PostBreadcrumb';
 import { PageHeader } from '@/components/PostHeader';
 import { Profile } from '@/components/Profile';
 import { TableOfContent } from '@/components/TableOofContent';
-import type { Post } from 'contentlayer/generated';
 import { allPosts } from 'contentlayer/generated';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { join } from 'path';
@@ -51,7 +50,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: {
-      post,
       params,
       profile,
     },
@@ -59,7 +57,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 interface Props {
-  post: Post;
   params: {
     categorySlug: string;
     postSlug: string;
@@ -71,7 +68,12 @@ interface Props {
   };
 }
 
-export default function PostPage({ post, params, profile }: Props) {
+export default function PostPage({ params, profile }: Props) {
+  const postSlug = params?.postSlug as string;
+  const post = allPosts.find(post => {
+    return post._raw.flattenedPath === decodeURI(postSlug);
+  });
+
   return (
     <>
       <main className="flex flex-col gap-4 md:gap-10 p-2 md:p-6 w-full min-w-0">

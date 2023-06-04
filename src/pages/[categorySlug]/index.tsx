@@ -23,7 +23,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const categorySlug = params?.categorySlug as string;
-  const posts = findPostsByCategory(decodeURI(categorySlug));
+  const posts = findPostsByCategory(decodeURI(categorySlug)).map(({ _raw, title, description }) => ({
+    title,
+    description,
+    _raw,
+  }));
+
   const classifiedPosts = classifyByFirstLetter(posts);
 
   return {

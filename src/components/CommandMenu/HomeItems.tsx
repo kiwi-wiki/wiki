@@ -1,4 +1,3 @@
-import { SubItems } from '@/components/CommandMenu/SubItems';
 import { getCateogryRoutes } from '@/utils/navigation';
 import { CommandItem } from 'cmdk';
 import { BiCategoryAlt } from 'react-icons/bi';
@@ -18,7 +17,6 @@ export function HomeItems({ searchProjects }: HomeItemsProps) {
           {route.name}
         </CommandItem>
       ))}
-      <SubItems />
     </>
   );
 }

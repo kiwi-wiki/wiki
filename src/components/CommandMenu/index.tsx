@@ -6,7 +6,6 @@ import { CommandMenuFooter } from '@/components/CommandMenu/CommandMenuFooter';
 import { HomeItems } from '@/components/CommandMenu/HomeItems';
 import { Command } from 'cmdk';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import './cmdk.css';
 
 interface CommandMenuProps {
   open: boolean;

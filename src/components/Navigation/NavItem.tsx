@@ -1,5 +1,3 @@
-'use client';
-
 import type { Route } from '@/types/navigation.type';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

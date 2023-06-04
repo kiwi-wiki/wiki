@@ -1,5 +1,3 @@
-'use client';
-
 import { useHeadingObserver } from '@/hooks/use-heading-observer';
 import type { Heading } from '@/types/dom.type';
 import classNames from 'classnames';

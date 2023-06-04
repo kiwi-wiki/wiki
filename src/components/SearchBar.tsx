@@ -1,5 +1,3 @@
-'use client';
-
 import { CommandMenu } from '@/components/CommandMenu';
 import { useBoolean } from '@/hooks/use-boolean';
 import classNames from 'classnames';

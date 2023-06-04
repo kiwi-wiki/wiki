@@ -1,4 +1,4 @@
-import { NavItem } from '@/components/Navigation/NavItem.client';
+import { NavItem } from '@/components/Navigation/NavItem';
 import { getCateogryRoutes } from '@/utils/navigation';
 
 export function Navigation() {

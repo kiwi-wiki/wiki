@@ -5,10 +5,6 @@ const nextConfig = {
     unoptimized: true,
   },
 
-  experimental: {
-    appDir: true,
-  },
-
   // 현재 swc 컴파일러 사용시 cmdk 쪽에서 JSON.parse 한글과 관련된 에러 발생
   swcMinify: false,
 };

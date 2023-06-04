@@ -1,40 +1,49 @@
-import { CategoryBreadcrumb } from '@/app/[categorySlug]/CategoryBreadcrumb';
+import { CategoryBreadcrumb } from '@/components/CategoryBreadcrumb';
 import { Divider } from '@/components/Divider';
 import { PostCard } from '@/components/PostCard';
 import { PageHeader } from '@/components/PostHeader';
 import { findCategories, findPostsByCategory } from '@/lib/api';
-import { makeTitle } from '@/utils/metadata';
 import { classifyByFirstLetter } from '@/utils/misc';
-import type { Metadata } from 'next';
+import type { Post } from 'contentlayer/generated';
+import type { GetStaticPaths, GetStaticProps } from 'next';
 import { join } from 'path';
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = findCategories().map(category => ({
+    params: {
+      categorySlug: category,
+    },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const categorySlug = params?.categorySlug as string;
+  const posts = findPostsByCategory(decodeURI(categorySlug));
+  const classifiedPosts = classifyByFirstLetter(posts);
+
+  return {
+    props: {
+      classifiedPosts,
+      params,
+    },
+  };
+};
+
 interface Props {
+  classifiedPosts: {
+    [key: string]: Post[];
+  };
   params: {
     categorySlug: string;
   };
 }
 
-export async function generateStaticParams() {
-  const categories = findCategories();
-  console.log('🚀 ~ file: page.tsx:19 ~ generateStaticParams ~ categories:', categories);
-
-  return categories.map(category => ({
-    params: {
-      categorySlug: category,
-    },
-  }));
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  return {
-    title: makeTitle({ title: params.categorySlug }),
-  };
-}
-
-export default async function CategoryPage({ params }: Props) {
-  const posts = findPostsByCategory(decodeURI(params.categorySlug));
-  const classifiedPosts = classifyByFirstLetter(posts);
-
+export default function CategoryPage({ classifiedPosts, params }: Props) {
   return (
     <main className="flex flex-col gap-4 md:gap-10 w-full h-full p-2 md:p-6 max-w-3xl">
       <CategoryBreadcrumb categoryUrl={params.categorySlug} />

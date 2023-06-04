@@ -9,7 +9,7 @@ export function CategoryBreadcrumb({ categoryUrl }: Props) {
   return (
     <Breadcrumb seperator={<RxCaretRight size={20} />}>
       <BreadcrumbItem href="/" text="Home" />
-      <BreadcrumbItem href={categoryUrl} text={categoryUrl} />
+      <BreadcrumbItem href={`/${categoryUrl}`} text={categoryUrl} />
     </Breadcrumb>
   );
 }

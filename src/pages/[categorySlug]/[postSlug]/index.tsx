@@ -1,45 +1,77 @@
-import { PostBreadcrumb } from '@/app/[categorySlug]/[postSlug]/PostBreadcrumb';
 import { PostBody } from '@/components/PostBody';
+import { PostBreadcrumb } from '@/components/PostBreadcrumb';
 import { PageHeader } from '@/components/PostHeader';
 import { Profile } from '@/components/Profile';
 import { TableOfContent } from '@/components/TableOofContent';
-import { makeTitle } from '@/utils/metadata';
+import type { Post } from 'contentlayer/generated';
 import { allPosts } from 'contentlayer/generated';
-import type { Metadata } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { join } from 'path';
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = allPosts.map(post => {
+    const categorySlug = post.category;
+    const postSlug = post._raw.flattenedPath;
+    return {
+      params: {
+        categorySlug,
+        postSlug,
+      },
+    };
+  });
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const postSlug = params?.postSlug as string;
+  const post = allPosts.find(post => {
+    return post._raw.flattenedPath === decodeURI(postSlug);
+  });
+
+  async function getGithubProfile({ author }: { author: string }) {
+    if (process.env.NODE_ENV === 'development') {
+      return {
+        avatar_url: 'https://avatars.githubusercontent.com/u/32444953?v=4',
+        name: 'Kiwi',
+        bio: 'Frontend Developer',
+      };
+    }
+
+    const res = await fetch(`https://api.github.com/users/${author}`);
+    const data = await res.json();
+
+    return data;
+  }
+
+  const profile = await getGithubProfile({ author: post?.author ?? '' });
+
+  return {
+    props: {
+      post,
+      params,
+      profile,
+    },
+  };
+};
+
 interface Props {
+  post: Post;
   params: {
     categorySlug: string;
     postSlug: string;
   };
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = allPosts.find(post => {
-    return post._raw.flattenedPath === decodeURI(params.postSlug);
-  });
-
-  return {
-    title: makeTitle({ title: post?.title ?? '' }),
+  profile: {
+    avatar_url: string;
+    name: string;
+    bio: string;
   };
 }
 
-export async function generateStaticParams() {
-  return [
-    {
-      slug: 'blog',
-    },
-  ];
-}
-
-export default async function PostPage({ params }: Props) {
-  const post = allPosts.find(post => {
-    return post._raw.flattenedPath === decodeURI(params.postSlug);
-  });
-
-  const profile = await getGithubProfile({ author: post?.author ?? '' });
-
+export default function PostPage({ post, params, profile }: Props) {
   return (
     <>
       <main className="flex flex-col gap-4 md:gap-10 p-2 md:p-6 w-full min-w-0">
@@ -66,19 +98,4 @@ export default async function PostPage({ params }: Props) {
       <TableOfContent title={post?.title} headings={post?.headings ?? []} />
     </>
   );
-}
-
-async function getGithubProfile({ author }: { author: string }) {
-  if (process.env.NODE_ENV === 'development') {
-    return {
-      avatar_url: 'https://avatars.githubusercontent.com/u/32444953?v=4',
-      name: 'Kiwi',
-      bio: 'Frontend Developer',
-    };
-  }
-
-  const res = await fetch(`https://api.github.com/users/${author}`);
-  const data = await res.json();
-
-  return data;
 }
